@@ -48,6 +48,13 @@ function getDuration(inputPath) {
     let err = "";
     ffprobe.stdout.on("data", (d) => { out += d; });
     ffprobe.stderr.on("data", (d) => { err += d; });
+    ffprobe.on("error", (e) => {
+      if (e && e.code === "ENOENT") {
+        reject(new Error("ffprobe not found. Install ffmpeg (includes ffprobe) and try again."));
+        return;
+      }
+      reject(e);
+    });
     ffprobe.on("close", (code) => {
       if (code !== 0) {
         reject(new Error(err || "ffprobe failed"));
@@ -94,6 +101,13 @@ function runFFmpegPass(input, output, passNum, videoKbps, opts, filter) {
       if (line.includes("frame=") || line.includes("size=") || line.includes("time=")) {
         process.stderr.write(d);
       }
+    });
+    ffmpeg.on("error", (e) => {
+      if (e && e.code === "ENOENT") {
+        reject(new Error("ffmpeg not found. Install ffmpeg and try again."));
+        return;
+      }
+      reject(e);
     });
 
     ffmpeg.on("close", (code) => {
