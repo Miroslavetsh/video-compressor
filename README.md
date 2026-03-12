@@ -12,7 +12,7 @@
 Команда для ffmpeg:
 
 ````bash
-ssudo chown -R "$USER" /opt/homebrew /Users/$USER/Library/Logs/Homebrew
+sudo chown -R "$USER" /opt/homebrew /Users/$USER/Library/Logs/Homebrew
 chmod -R u+w /opt/homebrew /Users/$USER/Library/Logs/Homebrew
 brew install ffmpeg```
 
