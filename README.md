@@ -7,6 +7,15 @@
 - Node.js
 - FFmpeg (в PATH)
 
+### Установка
+
+Команда для ffmpeg:
+
+````bash
+ssudo chown -R "$USER" /opt/homebrew /Users/$USER/Library/Logs/Homebrew
+chmod -R u+w /opt/homebrew /Users/$USER/Library/Logs/Homebrew
+brew install ffmpeg```
+
 ## Запуск
 
 **Через npm (поменяй путь к файлу в `package.json` → `config.input`):**
@@ -15,7 +24,7 @@
 # В package.json в секции "config" укажи имя файла, например "input": "Screening.mov"
 # Файл должен лежать в source/
 npm run compress:compatible
-```
+````
 
 **Через bash (как раньше):**
 
