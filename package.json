@@ -4,10 +4,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compress:compatible": "node -e \"const p=require('./package.json').config.input;const n=p.replace(/\\.[^.]+$/,'');const r=require('child_process').spawnSync('node',['index.js','source/'+p,'output/'+n+'_1GB.mp4','1000','--height','720','--fps','30','--codec','h264'],{stdio:'inherit'});process.exit(r.status ?? 1);\""
+    "compress:compatible": "node -e \"const p=require('./package.json').config.input;const n=p.replace(/\\.[^.]+$/,'');const r=require('child_process').spawnSync('node',['index.js','source/'+p,'output/'+n+'_1GB.mp4','1000','--height','720','--fps','30','--codec','h264'],{stdio:'inherit'});process.exit(r.status ?? 1);\"",
+    "cleanup:output": "rm -rf output/*",
+    "cleanup:source": "rm -rf source/*"
   },
   "config": {
-    "input": "Daily_12_03.mov"
+    "input": "Daily.mov"
   },
   "keywords": [],
   "author": "",
