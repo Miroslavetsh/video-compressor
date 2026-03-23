@@ -9,7 +9,7 @@
     "cleanup:source": "rm -rf source/*"
   },
   "config": {
-    "input": "Daily.mov"
+    "input": "Video.mov"
   },
   "keywords": [],
   "author": "",
