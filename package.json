@@ -5,6 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compress:compatible": "node -e \"const p=require('./package.json').config.input;const n=p.replace(/\\.[^.]+$/,'');const r=require('child_process').spawnSync('node',['index.js','source/'+p,'output/'+n+'_1GB.mp4','1000','--height','720','--fps','30','--codec','h264'],{stdio:'inherit'});process.exit(r.status ?? 1);\"",
+    "salary:calc": "node salary-calc.js",
+    "salary:calc:args": "node salary-calc.js март 2026 5 700",
     "cleanup:output": "rm -rf output/*",
     "cleanup:source": "rm -rf source/*"
   },
