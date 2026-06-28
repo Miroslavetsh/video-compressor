@@ -58,6 +58,7 @@ npm run salary:calc
 ```
 
 Дальше скрипт попросит ввести:
+
 - месяц (`март`, `3`, `03`, `march` и т.д.)
 - год (можно Enter для текущего года)
 - количество отработанных дней
@@ -67,4 +68,36 @@ npm run salary:calc
 
 ```bash
 npm run salary:calc -- март 2026 5 700
+```
+
+## Для скачивания видео
+
+1. Получить путь от конкретного видоса и законсолить
+
+```javascript
+fetch(document.querySelector("video").currentSrc)
+  .then((r) => r.text())
+  .then((t) => {
+    console.log(t);
+    copy(t);
+  });
+```
+
+2. Из текста получить ссылки на 480/720 и другие разрешения видео
+
+```bash
+#EXTM3U
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2599999,RESOLUTION=1280x720,FRAME-RATE=25.000,CODECS="avc1.64001f,mp4a.40.2",NAME="HQ"
+https://e1p.starlight.digital/get-playlist/hls-vod/files/19/15/2581519/mq.mp4/index-v1-a1.m3u8?md5=f4mQSfaHHBtKD8GiDh0OJA&testadv=&hash=2a5f3ef3fa860af7dde6ba7e0ccdf6fbc42b44bc55b7f776fb81725b91f74073&is_edge=1
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1384904,RESOLUTION=854x480,FRAME-RATE=25.000,CODECS="avc1.64001f,mp4a.40.2",NAME="SD"
+https://e1p.starlight.digital/get-playlist/hls-vod/files/16/15/2581516/lq.mp4/index-v1-a1.m3u8?md5=LXGU1tOlKG0WNdygBpiCrw&testadv=&hash=2a5f3ef3fa860af7dde6ba7e0ccdf6fbc42b44bc55b7f776fb81725b91f74073&is_edge=1
+
+#EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=250406,RESOLUTION=1280x720,CODECS="avc1.64001f",URI="https://e1p.starlight.digital/get-playlist/hls-vod/files/19/15/2581519/mq.mp4/iframes-v1-a1.m3u8?md5=Ee8H8OxmPLP8GvcOB0qWpA&testadv=&hash=2a5f3ef3fa860af7dde6ba7e0ccdf6fbc42b44bc55b7f776fb81725b91f74073&is_edge=1"
+#EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=145266,RESOLUTION=854x480,CODECS="avc1.64001f",URI="https://e1p.starlight.digital/get-playlist/hls-vod/files/16/15/2581516/lq.mp4/iframes-v1-a1.m3u8?md5=HVyenJ42pGrG6IsOade8Ew&testadv=&hash=2a5f3ef3fa860af7dde6ba7e0ccdf6fbc42b44bc55b7f776fb81725b91f74073&is_edge=1"
+```
+
+3. Запустить на выполнение FFMPEG
+
+```bash
+ffmpeg -i "https://e1p.starlight.digital/get-playlist/hls-vod/files/19/15/2581519/mq.mp4/index-v1-a1.m3u8?md5=f4mQSfaHHBtKD8GiDh0OJA&testadv=&hash=2a5f3ef3fa860af7dde6ba7e0ccdf6fbc42b44bc55b7f776fb81725b91f74073&is_edge=1" -c copy output/movie.mp4
 ```
