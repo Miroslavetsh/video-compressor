@@ -121,7 +121,9 @@ async function main() {
     } else {
       monthInput = await ask("Месяц (например: март или 3): ");
       yearInput = await ask("Год (Enter = текущий): ");
-      workedDaysInput = await ask("Сколько дней отработано: ");
+      workedDaysInput = await ask(
+        "Сколько дней отработано (Enter = весь месяц): ",
+      );
       salaryInput = await ask("Месячная ставка: ");
     }
 
@@ -136,7 +138,13 @@ async function main() {
       throw new Error("Год должен быть целым числом (например 2026).");
     }
 
-    const workedDays = Number(String(workedDaysInput).replace(",", "."));
+    const allWorkingDays = countWorkingDays(year, monthIndex);
+
+    const workedDaysIsEmpty =
+      workedDaysInput === undefined || String(workedDaysInput).trim() === "";
+    const workedDays = workedDaysIsEmpty
+      ? allWorkingDays
+      : Number(String(workedDaysInput).replace(",", "."));
     if (!Number.isFinite(workedDays) || workedDays < 0) {
       throw new Error("Отработанные дни должны быть числом >= 0.");
     }
@@ -147,7 +155,6 @@ async function main() {
     }
 
     const monthlySalary = floorTo2(monthlySalaryRaw);
-    const allWorkingDays = countWorkingDays(year, monthIndex);
 
     if (workedDays > allWorkingDays) {
       throw new Error(
