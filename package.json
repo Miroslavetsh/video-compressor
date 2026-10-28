@@ -9,7 +9,7 @@
     "salary:calc:args": "node scripts/salary-calc.js март 2026 5 700",
     "cleanup:output": "rm -rf output/*",
     "cleanup:source": "rm -rf source/*",
-    "cleanup": "npm run cleanup:source && npm run cleanup:output"
+    "cleanup": "npm run cleanup:source && npm run cleanup:output && clear"
   },
   "config": {
     "input": "Video.mov"
